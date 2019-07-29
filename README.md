@@ -5,7 +5,7 @@ Dump structure from a binary SML (Smart Message Language) file. SML is used in v
 ## Usage
 
 ```
-$ smldump.pl /tmp/smartmeterblob.bin
+$ smldump.pl /tmp/smartmeter-ISKRA-MT681.bin
 1B 1B 1B 1B
 01 01 01 01
 
@@ -73,3 +73,10 @@ $ smldump.pl /tmp/smartmeterblob.bin
                     01: 
 [...]
 ```
+
+## Credits
+
+* [de.wikipedia.org](https://de.wikipedia.org/wiki/Smart_Message_Language)
+* [Bundesamt für Sicherheit in der Informationstechnik](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR03109/TR-03109-1_Anlage_Feinspezifikation_Drahtgebundene_LMN-Schnittstelle_Teilb.pdf?__blob=publicationFile&v=1)
+* [Stefan Weigert](http://www.stefan-weigert.de/php_loader/sml.php)
+
