@@ -31,16 +31,21 @@
 use strict;
 
 my %obis = (
-    "\x81\x81\xC7\x82\x03\xFF" => "Hersteller-Identifikation",
+    "\x00\x00\x60\x01\xFF\xFF" => "Seriennummer",
     "\x01\x00\x00\x00\x09\xFF" => "Server-Id / Geraeteeinzelidentifikation",
-    "\x01\x00\x01\x08\x00\xFF" => "Aktueller Zaehlerstand",
-    "\x01\x00\x01\x08\x01\xFF" => "Zaehlerstand zu Tarif 1",
-    "\x01\x00\x01\x08\x02\xFF" => "Zaehlerstand zu Tarif 2",
+    "\x01\x00\x01\x08\x00\xFF" => "Zaehlwerk pos. Wirkenergie (Bezug), tariflos",
+    "\x01\x00\x01\x08\x01\xFF" => "Zaehlwerk pos. Wirkenergie (Bezug), Tarif 1",
+    "\x01\x00\x01\x08\x02\xFF" => "Zaehlwerk pos. Wirkenergie (Bezug), Tarif 2",
+    "\x01\x00\x02\x08\x00\xFF" => "Zaehlwerk neg. Wirkenergie (Einspeisung), tariflos",
+    "\x01\x00\x02\x08\x01\xFF" => "Zaehlwerk neg. Wirkenergie (Einspeisung), Tarif 1",
+    "\x01\x00\x02\x08\x02\xFF" => "Zaehlwerk neg. Wirkenergie (Einspeisung), Tarif 2",
     "\x01\x00\x0F\x07\x00\xFF" => "Betrag der aktuellen Wirkleistung",
+    "\x01\x00\x10\x07\x00\xFF" => "Aktuelle Wirkleistung gesamt",
+    "\x01\x00\x24\x07\x00\xFF" => "Aktuelle Wirkleistung L1",
+    "\x01\x00\x38\x07\x00\xFF" => "Aktuelle Wirkleistung L2",
+    "\x01\x00\x4c\x07\x00\xFF" => "Aktuelle Wirkleistung L3",
+    "\x81\x81\xC7\x82\x03\xFF" => "Hersteller-Identifikation",
     "\x81\x81\xC7\x82\x05\xFF" => "Public Key",
-    "\x01\x00\x02\x08\x00\xFF" => "Wirkenergie Einspeisung gesamt tariflos",
-    "\x01\x00\x02\x08\x01\xFF" => "Wirkenergie Einspeisung Tarif 1",
-    "\x01\x00\x02\x08\x02\xFF" => "Wirkenergie Einspeisung Tarif 2",
 );
 
 my $buf;

@@ -2,6 +2,8 @@
 
 Dump structure from a binary SML (Smart Message Language) file. SML is used in various smart metering (electricity, gas, water ...) systems in germany. As of now, the script also parses a small selection of OBIS (Object Identification System) classification numbers.
 
+Some data (e.g. "Aktuelle Wirkleistung") is only available if you unlock the Smart Meter with a 4-digit PIN via the optical interface. You may have to ask your system operator ("Versorgungsnetzbetreiber") for this PIN.
+
 ## Usage
 
 ```
@@ -79,4 +81,5 @@ $ smldump.pl /tmp/smartmeter-ISKRA-MT681.bin
 * [de.wikipedia.org](https://de.wikipedia.org/wiki/Smart_Message_Language)
 * [Bundesamt für Sicherheit in der Informationstechnik](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR03109/TR-03109-1_Anlage_Feinspezifikation_Drahtgebundene_LMN-Schnittstelle_Teilb.pdf?__blob=publicationFile&v=1)
 * [Stefan Weigert](http://www.stefan-weigert.de/php_loader/sml.php)
+* [gemu Sonoff](https://github.com/gemu2015/Sonoff-Tasmota/blob/universal5/sonoff/xsns_95_sml.ino)
 
