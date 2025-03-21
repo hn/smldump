@@ -44,8 +44,36 @@ my %obis = (
     "\x01\x00\x24\x07\x00\xFF" => "Aktuelle Wirkleistung L1",
     "\x01\x00\x38\x07\x00\xFF" => "Aktuelle Wirkleistung L2",
     "\x01\x00\x4c\x07\x00\xFF" => "Aktuelle Wirkleistung L3",
+    "\x01\x00\x60\x01\x00\xFF" => "Seriennummer aus 96.1.0",
+    "\x01\x00\x60\x32\x01\x01" => "Hersteller-Id aus 96.50.1",
     "\x81\x81\xC7\x82\x03\xFF" => "Hersteller-Identifikation",
     "\x81\x81\xC7\x82\x05\xFF" => "Public Key",
+    "\x01\x01\x01\x1D\x00\xFF" => "Viertelstundenwert RLM Wirkarbeit",
+    "\x07\x14\x03\x00\x00\xFF" => "Gaszaehlerstand (Betriebsvolumen) Bezug",
+    "\x07\x00\x34\x00\x26\xFF" => "Zustandszahl",
+    "\x07\x00\x36\x00\x00\xFF" => "Gasbrennwert",
+);
+
+my %sml = (
+    "\x01\x00" => "SML_PublicOpen.Req",
+    "\x01\x01" => "SML_PublicOpen.Res",
+    "\x02\x00" => "SML_PublicClose.Req",
+    "\x02\x01" => "SML_PublicClose.Res",
+    "\x03\x00" => "SML_GetProfilePack.Req",
+    "\x03\x01" => "SML_GetProfilePack.Res",
+    "\x04\x00" => "SML_GetProfileList.Req",
+    "\x04\x01" => "SML_GetProfileList.Res",
+    "\x05\x00" => "SML_GetProcParameter.Req",
+    "\x05\x01" => "SML_GetProcParameter.Res",
+    "\x07\x00" => "SML_GetList.Req",
+    "\x07\x01" => "SML_GetList.Res",
+    "\x08\x00" => "SML_GetCosem.Req",
+    "\x08\x01" => "SML_GetCosem.Res",
+    "\x09\x00" => "SML_SetCosem.Req",
+    "\x09\x01" => "SML_SetCosem.Res",
+    "\x0A\x00" => "SML_ActionCosem.Req",
+    "\x0A\x01" => "SML_ActionCosem.Res",
+    "\xFF\x01" => "SML_Attention.Res",
 );
 
 my $buf;
@@ -93,6 +121,10 @@ while ( read( SML, $buf, 1 ) ) {
         printf( "%*v2.2X", " ", $buf );
         print "\t# OBIS " . $obis{$buf} if ( $obis{$buf} );
     }
+    elsif ( ( $buf & "\x70" ) eq "\x40" ) {    # Boolean
+        read( SML, $buf, $al );
+        printf( "%*v2.2X", " ", $buf );
+    }
     elsif ( ( $buf & "\x70" ) eq "\x50" ) {    # IntegerX
         read( SML, $buf, $al );
         printf( "%*v2.2X", " ", $buf );
@@ -100,6 +132,7 @@ while ( read( SML, $buf, 1 ) ) {
     elsif ( ( $buf & "\x70" ) eq "\x60" ) {    # UnsignedX
         read( SML, $buf, $al );
         printf( "%*v2.2X", " ", $buf );
+        print "\t# " . $sml{$buf} if ( $sml{$buf} );
     }
     else {
         die("Unsupported");
